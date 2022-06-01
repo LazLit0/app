@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @RequestMapping("/api/v1/customers") // endpoint for /customers resource collection
-public interface CustomerAPI {
+public interface CustomersAPI {
     /**
      * GET /customers
      * 
