@@ -75,7 +75,6 @@ public class CustomersController implements CustomersAPI {
 		//
 		ResponseEntity<?> re = null;
 		System.err.println(request.getMethod() + " " + request.getRequestURI());
-		System.out.println("+++++++ Jetzt in Customer mit der ID: " + id + "++++++++");
 		ArrayNode arrayNode = customersAsJSON();
 
 			if (arrayNode.size() < id) {
@@ -84,10 +83,7 @@ public class CustomersController implements CustomersAPI {
 			if (!arrayNode.isEmpty()) {
 				for (int i = 0; i < arrayNode.size(); i++) {
 					JsonNode jsonObject = arrayNode.get(i);
-					System.out.println("#### DAS IST ARRAYNODE #######: " + arrayNode.get(i));
-					System.out.println("Das ist JSONOBJECT>GET : " + jsonObject.get("id"));
 					long num = jsonObject.get("id").asLong();
-					System.out.println("### DAS IST NUM: " + num);
 					if (num == id) {
 						re = new ResponseEntity<JsonNode>(jsonObject, HttpStatus.OK);
 						return re;
