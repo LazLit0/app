@@ -3,6 +3,7 @@ package de.freerider.app;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.EventListener;
@@ -10,10 +11,15 @@ import org.springframework.context.event.EventListener;
 import de.freerider.datamodel.Customer;
 import de.freerider.repository.CustomerRepository;
 
-@SpringBootApplication
+// tell Spring where to scan for @Repository's
+@EnableJpaRepositories( basePackages = { "de.freerider.repository" } )
+// tell Spring where to scan for @Entity's
+@EntityScan( basePackages = { "de.freerider.datamodel" } )
+// tell Spring where to scan for @Components, @Controllers, @Services
 @ComponentScan(
-		// launch Controllers from package: de.freerider.restapi
-		basePackages = { "de.freerider.restapi", "de.freerider.repository" })
+	// launch Controllers from package: de.freerider.restapi
+	basePackages = { "de.freerider.restapi" })
+@SpringBootApplication
 public class AppApplication {
 
 	@Autowired

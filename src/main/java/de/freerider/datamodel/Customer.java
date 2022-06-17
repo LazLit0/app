@@ -10,27 +10,33 @@ import java.util.*;
  * @version "0.1.0"
  * @author sgra64
  */
-
+@Entity
+@Table(name = "CUSTOMER")
 public class Customer {
 
     /**
      * id attribute, {@code < 0} invalid, can be set only once.
      */
+    @Id // PRIMARY KEY attribute
+    @Column(name ="ID")
     private long id = -1;
 
     /**
      * surname, never null, mapped to "" when empty.
      */
+    @Column(name ="NAME")
     private String lastName = "";
 
     /**
      * none-surname name parts, never null, mapped to "" when empty.
      */
+    @Column(name ="FIRST_NAME")
     private String firstName = "";
 
     /**
      * contact information with multiple contact entries.
      */
+    @Transient // 1:n relation, currently not in table
     private List<String> contacts = new ArrayList<String>();
 
     /**
@@ -42,6 +48,8 @@ public class Customer {
     /**
      * Definition of Customer Status states.
      */
+    @Column(name ="STATUS")
+    @Enumerated
     public enum Status {	// FIX: Customer.Status -> Status, move from end to top
         New,
         InRegistration,
